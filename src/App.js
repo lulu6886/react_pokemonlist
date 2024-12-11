@@ -1,11 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import PokemonList from './PokemonList';
+import logo from "./logo.svg";
+import "./App.css";
+import "./card.css";
+
+import PokemonList from "./PokemonList";
 
 function App() {
   return (
     <div className="App">
-      <PokemonList/>
+      <PokemonList />
     </div>
   );
 }
