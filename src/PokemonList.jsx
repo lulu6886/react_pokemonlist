@@ -1,35 +1,32 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+ 
 const PokemonList = () => {
     const [pokemons, setPokemons] = useState([]);
-    const [error, setError] = useState(null); 
-
+    const [error, setError] = useState(null);
+ 
     useEffect(() => {
-        console.log('composant monté');
-        axios.get('https://tyradex.vercel.app/api/v1/pokemon')
+        axios.get('https://pokebuildapi.fr/api/v1/pokemon')
             .then(response => {
-                setPokemons(response.data) //Mise à jour de l'état
+                setPokemons(response.data)
             })
             .catch(error => {
-                setError('Erreur lors de la récupération des pokémon') //gestion des erreurs
+                setError("Erreur de la récup de la data");
                 console.error(error);
             });
     }, []);
-
+ 
     return (
         <div>
-            {error && <p style={{color: 'red'}}>{error}</p>}
-            <h1>Liste des Pokémon</h1>
-            <ul>
-                {pokemons.map(pokemons => (
-                    <li key={pokemons.id}>{pokemons.name}</li>
-                ))}
-            </ul>
+            {error && <p style={{color:'red'}}>{error}</p>}
+        <h1>Liste des Pokémon</h1>
+        <ul>
+            {pokemons.map(pokemon => (
+                <li key={pokemon.id}>{pokemon.name}<img src={pokemon.sprite} alt="" /></li>
+            ))}
+        </ul>
         </div>
     );
 };
-
-export default PokemonList
-
-
+ 
+export default PokemonList;
