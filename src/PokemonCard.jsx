@@ -1,28 +1,18 @@
-import React, {useState,useEffect,} from "react"
-import axios from 'axios'
+import React from "react";
 
+import "./card.css";
 
-const PokemonCard = () => {
-const [pokemons,setPokemons] = useState([]);
-useEffect(() => {
-    console.log('composant monté');
-    axios.get('https://pokebuildapi.fr/api/v1/pokemon')
-        .then(response => {
-            setPokemons(response.data) //Mise à jour de l'état
-        })
-}, []);
-return (
-    <div>
-        {error && <p style={{color: 'red'}}>{error}</p>}
-        <ul>
+export default function PokemonCard({pokemon}) {
+    console.log (pokemon);
+    return (
+        <div>
+            <h1>Liste des Pokémon</h1>
+            <img src={pokemon.sprite}/>
             <div>
-            {pokemons.map(pokemons => (
-                <li key={pokemons.id}>{pokemons.name} <img src={pokemons.sprite}/></li>
-            ))}
+                <h4>{pokemon.name}</h4>
+                <p class>{pokemon.apiTypes}</p>
+                <p>{pokemon.stats}</p>
             </div>
-            
-        </ul>
-    </div>
-);
-};
-export default PokemonCard
+        </div>
+    )
+}

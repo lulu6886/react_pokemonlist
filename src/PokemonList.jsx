@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
- 
+import PokemonCard from './PokemonCard';
+
 const PokemonList = () => {
     const [pokemons, setPokemons] = useState([]);
     const [error, setError] = useState(null);
@@ -20,11 +21,11 @@ const PokemonList = () => {
         <div>
             {error && <p style={{color:'red'}}>{error}</p>}
         <h1>Liste des Pokémon</h1>
-        <ul>
+        <div>
             {pokemons.map(pokemon => (
-                <li key={pokemon.id}>{pokemon.name}<img src={pokemon.sprite} alt="" /></li>
+                <PokemonCard pokemon={pokemon}/>
             ))}
-        </ul>
+        </div>     
         </div>
     );
 };
